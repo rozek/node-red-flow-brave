@@ -1,0 +1,67 @@
+[
+    {
+        "id": "d6fc2372a32ac0c8",
+        "type": "debug",
+        "z": "b51de224d58a5b6a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "232ea8f5e2bd07fa",
+        "type": "inject",
+        "z": "b51de224d58a5b6a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "language",
+                "v": "english",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "web scraping",
+        "payloadType": "str",
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "3b318c900774b05f"
+            ]
+        ]
+    },
+    {
+        "id": "3b318c900774b05f",
+        "type": "reusable",
+        "z": "b51de224d58a5b6a",
+        "name": "",
+        "target": "brave.com",
+        "outputs": 2,
+        "x": 290,
+        "y": 500,
+        "wires": [
+            [
+                "d6fc2372a32ac0c8"
+            ],
+            [
+                "d6fc2372a32ac0c8"
+            ]
+        ]
+    }
+]
