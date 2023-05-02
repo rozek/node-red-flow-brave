@@ -1,2 +1,46 @@
-# node-red-flow-brave
+# node-red-flow-brave #
+
 Node-RED flow to run an internet search using Brave.com and parse its findings
+
+![Brave Flow Screenshot](./Brave-Flow.png)
+
+This repository contains a simple flow which runs an internet search using [Brave.com](https://www.brave.com/) and parses its results.
+
+> Just a small note: if you like this work and plan to use it, consider "starring" this repository (you will find the "Star" button on the top right of this page), so that I know which of my repositories to take most care of.
+
+## Installation ##
+
+This flow relies on [Axios](https://axios-http.com/) for the communication with Startpage.com.
+
+Simply import the contents of file [Brave-Flow.json](./Brave-Flow.json) into your Node-RED Flow Editor and Axios will be installed as well (if necessary)
+
+Since the flow is implemented as a "reusable flow", the [corresponding nodes](https://github.com/rozek/node-red-contrib-reusable-flows) should also be installed - afterwards, Brave searches may be used anywhere in any workspace of your Node-RED server without having to copy the node which implements this function (this simplifies any updates)
+
+## Usage ##
+
+The Brave flow expects a single parameter:
+
+* `msg.payload` - initially contains the string to search for. Later on, it will be replaced either by an error message or the parsed search results
+
+If successfull (success is indicated by `msg.status === 200`), `msg.payload` will return an array with up to 18 search results. Each result is an object with the following properties:
+
+* `Date` - an optional date indicating when the found document was modifed
+* `URL` - the URL of the found document
+* `Title` - the title of the found document
+* `Description` - a short description of the found document
+
+> Nota bene: HTML entities (such as `&nbsp;`) will not be resolved
+
+If `msg.status` has a different value than 200 or 204, `msg.payload` will contain an error message describing the error that occurred
+
+### Example ###
+
+File [Brave-Example.json](./Brave-Example.json) contains a simple example: just import its contents into your Node-RED flow editor and configure the injection node with the desired search text.
+
+![Brave Example Screenshot](./Brave-Example.png)
+
+Shortly after pressing the injection button, the debug output should show up to 18 properly parsed search results.
+
+## License ##
+
+[MIT License](LICENSE.md)
